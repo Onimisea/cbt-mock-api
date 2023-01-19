@@ -5,7 +5,7 @@ from .models import User
 
 class UserAdmin(BaseUserAdmin):
     fieldsets = (
-        (None, {"fields": ("fullname", "jamb_reg_num", "password")}),
+        (None, {"fields": ("fullname", "jamb_reg_num", "generated_password", "password")}),
         (
             "Permissions",
             {
@@ -23,12 +23,12 @@ class UserAdmin(BaseUserAdmin):
             None,
             {
                 "classes": ("wide",),
-                "fields": ("fullname", "jamb_reg_num", "password1", "password2"),
+                "fields": ("fullname", "jamb_reg_num", "generated_password", "password1", "password2"),
             },
         ),
     )
 
-    list_display = ("fullname", "jamb_reg_num", "is_staff", "last_login")
+    list_display = ("fullname", "jamb_reg_num", "generated_password", "is_staff", "last_login")
 
     ordering = ('jamb_reg_num',)
 

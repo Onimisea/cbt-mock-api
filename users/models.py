@@ -42,7 +42,9 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     fullname = models.CharField(max_length=100, verbose_name="Firstname Lastname", null=False, blank=False)
     
-    jamb_reg_num = models.CharField(max_length=20, verbose_name="JAMB Registration Number", null=False, blank=False, unique=True)
+    jamb_reg_num = models.CharField(max_length=15, verbose_name="JAMB Registration Number", null=False, blank=False, unique=True)
+    
+    generated_password = models.CharField(max_length=9, verbose_name="Generated Password", null=False, blank=False, unique=False)
     
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
@@ -53,7 +55,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = "jamb_reg_num"
     EMAIL_FIELD = "jamb_reg_num"
-    REQUIRED_FIELDS = ['fullname',]
+    REQUIRED_FIELDS = ['fullname', 'generated_password']
 
     objects = UserManager()
 
