@@ -3,6 +3,8 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from cloudinary.models import CloudinaryField
 
+from users.models import User
+
 # Create your models here.
 class Subject(models.Model):
   subject = models.CharField(max_length=255)
@@ -17,9 +19,9 @@ class Subject(models.Model):
 
 
 class Quiz(models.Model):
-  subject = models.ForeignKey(Subject, default=1, on_delete=models.DO_NOTHING)
+  # subject = models.ForeignKey(Subject, default=1, on_delete=models.DO_NOTHING)
   
-  quiz = models.CharField(max_length=255, default=_("New Quiz"), verbose_name=_("Quiz Title"))
+  quiz = models.CharField(max_length=255, verbose_name=_("Quiz Title"))
 
   slug = models.SlugField(
     max_length=100,
@@ -27,8 +29,10 @@ class Quiz(models.Model):
     unique=True,
     blank=False,
     verbose_name=_("Quiz URL"),
-    default="quiz-url"
+    default=""
     )
+  
+  duration = models.IntegerField(default=1, verbose_name=_("Quiz Duration"))
 
   date_created = models.DateTimeField(auto_now_add=True)
 
@@ -50,12 +54,10 @@ class Updated(models.Model):
   class Meta:
     abstract = True
 
-
 class Question(Updated):
   quiz = models.ForeignKey(Quiz, related_name="question", on_delete=models.DO_NOTHING)
 
   question = models.CharField(max_length=500, default=_("New Question"), verbose_name=_("Question"))
-
 
   date_created = models.DateTimeField(auto_now_add=True, verbose_name=_("Date Created"))
 
@@ -86,8 +88,8 @@ class Diagram(Updated):
     verbose_name_plural = _("Diagrams")
     ordering = ['id']
   
-  def __str__(self):
-    return self.diagram
+  def __obj__(self):
+    return self.question
 
 
 class List(Updated):
@@ -118,5 +120,4 @@ class Option(Updated):
   
   def __str__(self):
     return self.option
-
 

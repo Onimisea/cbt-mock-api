@@ -31,3 +31,9 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
         return user
 
+
+class ViewUsersSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = User
+        fields = ["id", "fullname", "jamb_reg_num", "generated_password"]

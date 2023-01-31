@@ -17,7 +17,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 from .models import User
 from .serializers import (
-    CreateUserSerializer,
+    CreateUserSerializer, ViewUsersSerializer
 )
 
 
@@ -71,7 +71,7 @@ class CreateUserAPIView(generics.CreateAPIView):
 
 class UserListAPIView(generics.ListAPIView):
     queryset = User.objects.all()
-    serializer_class = CreateUserSerializer
+    serializer_class = ViewUsersSerializer
 
 
 class LogoutAPIView(APIView):

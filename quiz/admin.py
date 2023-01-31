@@ -3,18 +3,15 @@ from . import models
 
 # Register your models here.
 
-@admin.register(models.Subject)
-class SubjectAdmin(admin.ModelAdmin):
-  list_display = [
-    'subject',
-  ]
-
 @admin.register(models.Quiz)
 class QuizAdmin(admin.ModelAdmin):
   list_display = [
-    'quiz', 'subject'
+    'quiz', 'slug',
   ]
+  
   prepopulated_fields = {"slug": ("quiz",)}
+
+  search_fields = ["quiz",]
 
 class DiagramInlineModel(admin.TabularInline):
   model = models.Diagram
@@ -38,7 +35,9 @@ class QuestionAdmin(admin.ModelAdmin):
     'quiz', 'question', 'date_updated'
   ]
 
-  inlines = [OptionInlineModel,]
+  inlines = [ DiagramInlineModel, ListInlineModel, OptionInlineModel,]
+
+  search_fields = ["quiz", "question"]
 
 @admin.register(models.Diagram)
 class DiagramAdmin(admin.ModelAdmin):
@@ -51,3 +50,4 @@ class ListAdmin(admin.ModelAdmin):
 @admin.register(models.Option)
 class OptionAdmin(admin.ModelAdmin):
   list_display = ['option', 'is_correct', 'question',]
+

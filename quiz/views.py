@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import get_object_or_404
 from rest_framework import generics, status
 from rest_framework.decorators import APIView, api_view
@@ -10,9 +11,9 @@ from rest_framework.permissions import (
 from rest_framework.request import Request
 from rest_framework.response import Response
 
-
-from .models import Quiz
-from .serializers import QuizSerializer
+from users.models import User
+from .models import Quiz, Question
+from .serializers import QuizSerializer, QuestionSerializer
 
 # from django.contrib.auth import get_user_model
 
@@ -30,9 +31,15 @@ class all_quizzes(generics.ListAPIView):
 
 
 class Quiz(APIView):
-    def get(self, request, format=None, *args, **kwargs):
-        quiz = Quiz.objects.filter(quiz__quiz=kwargs['slug']).order_by('quiz_id')
+    # queryset = Quiz.objects.all()
+    # serializer_class = QuizSerializer
+    # lookup_field = 'slug'
 
-        serializer = QuizSerializer(quiz)
 
-        return Response(serializer.data)
+    def get(self, request, slug, *args, **kwargs):
+        queryset = Question.objects.all().filter(quiz__slug=slug)
+        print(queryset)
+        serializer = QuestionSerializer(queryset, many=True)
+        response = random.sample(serializer.data, len(serializer.data))
+        return Response(data=response, status=status.HTTP_200_OK)
+
