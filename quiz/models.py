@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from cloudinary.models import CloudinaryField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 from users.models import User
 
@@ -57,7 +58,7 @@ class Updated(models.Model):
 class Question(Updated):
   quiz = models.ForeignKey(Quiz, related_name="question", on_delete=models.DO_NOTHING)
 
-  question = models.CharField(max_length=500, default=_("New Question"), verbose_name=_("Question"))
+  question = RichTextUploadingField(verbose_name=_("Question"))
 
   date_created = models.DateTimeField(auto_now_add=True, verbose_name=_("Date Created"))
 
