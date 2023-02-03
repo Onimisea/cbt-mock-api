@@ -23,7 +23,7 @@ class ListInlineModel(admin.TabularInline):
 
 class OptionInlineModel(admin.TabularInline):
   model = models.Option
-  fields = ['option', 'is_correct',]
+  fields = ['option', 'answer',]
 
 @admin.register(models.Question)
 class QuestionAdmin(admin.ModelAdmin):
@@ -49,5 +49,5 @@ class ListAdmin(admin.ModelAdmin):
 
 @admin.register(models.Option)
 class OptionAdmin(admin.ModelAdmin):
-  list_display = ['option', 'is_correct', 'question',]
+  list_display = ['option', 'answer', 'question',]
 

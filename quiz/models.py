@@ -111,7 +111,7 @@ class Option(Updated):
 
   option = models.CharField(max_length=500, default=_("New Option"), verbose_name=_("Option"))
 
-  is_correct = models.BooleanField(default=False, verbose_name=_("Is it correct?"))
+  answer = models.BooleanField(default=False, verbose_name=_("Is it correct?"))
 
   class Meta:
     verbose_name = _("Option")
