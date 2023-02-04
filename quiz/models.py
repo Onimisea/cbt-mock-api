@@ -110,7 +110,7 @@ class List(Updated):
 class Option(Updated):
   question = models.ForeignKey(Question, related_name="option", on_delete=models.DO_NOTHING)
 
-  option = models.CharField(max_length=500, default=_("New Option"), verbose_name=_("Option"))
+  option = RichTextUploadingField(verbose_name=_("Option"))
 
   answer = models.BooleanField(default=False, verbose_name=_("Is it correct?"))
 
