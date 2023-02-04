@@ -20,7 +20,7 @@ class Subject(models.Model):
 
 
 class Quiz(models.Model):
-  # subject = models.ForeignKey(Subject, default=1, on_delete=models.DO_NOTHING)
+  # subject = models.ForeignKey(Subject, default=1, on_delete=models.CASCADE)
   
   quiz = models.CharField(max_length=255, verbose_name=_("Quiz Title"))
 
@@ -56,7 +56,7 @@ class Updated(models.Model):
     abstract = True
 
 class Question(Updated):
-  quiz = models.ForeignKey(Quiz, related_name="question", on_delete=models.DO_NOTHING)
+  quiz = models.ForeignKey(Quiz, related_name="question", on_delete=models.CASCADE)
 
   question = RichTextUploadingField(verbose_name=_("Question"))
 
@@ -75,7 +75,7 @@ class Question(Updated):
 
 
 class Diagram(Updated):
-  question = models.ForeignKey(Question, related_name="diagram", on_delete=models.DO_NOTHING)
+  question = models.ForeignKey(Question, related_name="diagram", on_delete=models.CASCADE)
 
   diagram = CloudinaryField(
     "Question Diagram",
@@ -94,7 +94,7 @@ class Diagram(Updated):
 
 
 class List(Updated):
-  question = models.ForeignKey(Question, related_name="list", on_delete=models.DO_NOTHING)
+  question = models.ForeignKey(Question, related_name="list", on_delete=models.CASCADE)
 
   list = models.CharField(max_length=500, default=_("New List"), verbose_name=_("List"))
 
@@ -108,7 +108,7 @@ class List(Updated):
 
 
 class Option(Updated):
-  question = models.ForeignKey(Question, related_name="option", on_delete=models.DO_NOTHING)
+  question = models.ForeignKey(Question, related_name="option", on_delete=models.CASCADE)
 
   option = RichTextUploadingField(verbose_name=_("Option"))
 
