@@ -47,7 +47,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
 class CreateUserAPIView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = CreateUserSerializer
-    permission_classes = [AllowAny,]
+    permission_classes = [AllowAny]
 
     def create(self, request: Request):
         data = request.data
