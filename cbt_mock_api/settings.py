@@ -37,7 +37,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "cbt-mock-api.onrender.com"]
+ALLOWED_HOSTS = ["localhost", "cbt-mock-api.onrender.com", "cbt-test.vercel.app"]
 
 
 # Application definition
@@ -211,6 +211,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
+    "cbt-test.vercel.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -218,6 +219,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
+    "cbt-test.vercel.app",
 ]
 
 CORS_ALLOW_METHODS = [
