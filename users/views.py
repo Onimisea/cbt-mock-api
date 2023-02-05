@@ -74,6 +74,12 @@ class UserListAPIView(generics.ListAPIView):
     serializer_class = ViewUsersSerializer
 
 
+class SingleUserAPIView(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = ViewUsersSerializer
+    lookup_field = "jamb_reg"
+
+
 class LogoutAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
