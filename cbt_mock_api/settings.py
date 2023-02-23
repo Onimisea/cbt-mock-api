@@ -38,7 +38,7 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "cbt-mock-api.onrender.com", "maiqelcbtapp.vercel.app", "http://maiqelcbtapp.vercel.app",
-    "https://maiqelcbtapp.vercel.app",]
+    "https://maiqelcbtapp.vercel.app"]
 
 
 # Application definition
