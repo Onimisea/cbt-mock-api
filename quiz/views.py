@@ -30,6 +30,11 @@ class all_quizzes(generics.ListAPIView):
     queryset = Quiz.objects.all()
 
 
+class all_questions(generics.ListAPIView):
+    serializer_class = QuestionSerializer
+    queryset = Question.objects.all()
+
+
 class Quiz(APIView):
     # queryset = Quiz.objects.all()
     # serializer_class = QuizSerializer
