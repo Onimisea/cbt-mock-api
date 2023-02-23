@@ -28,6 +28,11 @@ def quiz_home(request, *args, **kwargs):
 class all_quizzes(generics.ListAPIView):
     serializer_class = QuizSerializer
     queryset = Quiz.objects.all()
+    
+    
+class all_questions(generics.ListAPIView):
+    serializer_class = QuestionSerializer
+    queryset = Question.objects.all()
 
 
 class all_questions(generics.ListAPIView):
